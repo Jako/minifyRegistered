@@ -6,7 +6,7 @@ for the MODX Revolution content management framework
 
 Features
 --------------------------------------------------------------------------------
-With this plugin all js and css files (and chunks) added by the MODX API functions `regClientStartupScript`, `regClientScript`, `regClientCSS`, `regClientStartupHTMLBlock` and `regClientHTMLBlock` are checked to minify them by minify
+minifyRegistered is a simple but effective tool for MODX Revolution. With this tool all js and css files (and chunks) added by the MODX API functions `regClientStartupScript`, `regClientScript`, `regClientCSS`, `regClientStartupHTMLBlock` and `regClientHTMLBlock` are checked to minify them by minify
 
 Installation
 --------------------------------------------------------------------------------
