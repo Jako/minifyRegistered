@@ -23,7 +23,7 @@
  * 
  * @author      Thomas Jakobi (thomas.jakobi@partout.info)
  * @copyright   Copyright 2011, Thomas Jakobi
- * @version     0.2r
+ * @version     0.2
  *
  * @internal    events: OnWebPagePrerender
  * @internal    parameter: 
@@ -158,10 +158,14 @@ switch ($eventName) {
 				// cache the result
 				$modx->cacheManager->set('mfr_' . md5($clientStartupScripts . $startupScripts), $minifiedScripts);
 			}
-			
+
 			// insert minified scripts
-			$output = str_replace('</head>', $minifiedScripts['head'] . '</head>', $output);
-			$output = str_replace('</body>', $minifiedScripts['body'] . '</body>', $output);
+			if (isset($minifiedScripts['head'])) {
+				$output = str_replace('</head>', $minifiedScripts['head'] . '</head>', $output);
+			}
+			if (isset($minifiedScripts['body'])) {
+				$output = str_replace('</body>', $minifiedScripts['body'] . '</body>', $output);
+			}
 			break;
 		}
 }
