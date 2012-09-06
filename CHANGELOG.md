@@ -1,6 +1,9 @@
 History
 ================================================================================
 
+- 0.2.1
+    - bugfix: some registered lines were not properly worked
+    - bugfix: external sources are included first 
 - 0.2 revo
     - first version for MODX Revolution
 - 0.1.3 

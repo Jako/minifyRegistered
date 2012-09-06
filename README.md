@@ -25,8 +25,8 @@ excludeJs   | Comma separated list of files (including pathnames) not to be mini
 
 Notes
 --------------------------------------------------------------------------------
-1. Grouping all registered javascripts could change the inclusion order of the registered javascripts.
+1. Grouping registered javascripts could change the inclusion order of the registered javascripts.
 2. Not minified files are included later than the grouped minified and minified files.
 3. Registered chunks (i.e. javascript code) are included at the last position of head/body.
-4. The order of inclusion is *grouped minified*, *minified*, *not minified* and direct code.
+4. The order of inclusion is *external*, *grouped minified*, *minified*, *not minified* and direct code.
 5. If you i.e. block the MODX manager directory by .htaccess, you could download the latest minify on http://code.google.com/p/minify/ and install it elsewhere in your webroot
