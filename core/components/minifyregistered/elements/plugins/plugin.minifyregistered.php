@@ -52,8 +52,12 @@ switch ($eventName) {
 			$clientScripts = $modx->getRegisteredClientScripts();
 
 			// remove inserted registered scripts
-			$output = str_replace($clientStartupScripts . "\n", '', $output);
-			$output = str_replace($clientScripts . "\n", '', $output);
+			if ($clientStartupScripts) {
+				$output = str_replace($clientStartupScripts . "\n", '', $output);
+			}
+			if ($clientScripts) {
+				$output = str_replace($clientScripts . "\n", '', $output);
+			}
 
 			// any cached minified scripts?
 			$minifiedScripts = $modx->cacheManager->get('mfr_' . md5($clientStartupScripts . $clientScripts));
