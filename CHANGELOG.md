@@ -1,6 +1,8 @@
 History
 ================================================================================
 
+- 0.2.2
+    - bugfix: conditional lines are ignored 
 - 0.2.1
     - bugfix: some registered lines were not properly worked
     - bugfix: external sources are included first 
