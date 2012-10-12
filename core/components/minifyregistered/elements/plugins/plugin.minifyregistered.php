@@ -15,15 +15,15 @@
  * details.
  *
  * You should have received a copy of the GNU General Public License along with
- * Rowboat; if not, write to the Free Software Foundation, Inc., 59 Temple
- * Place, Suite 330, Boston, MA 02111-1307 USA
+ * minifyRegistered; if not, write to the Free Software Foundation, Inc., 
+ * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * @package minifyregistered
  * @subpackage plugin
  * 
  * @author      Thomas Jakobi (thomas.jakobi@partout.info)
  * @copyright   Copyright 2011, Thomas Jakobi
- * @version     0.2.1
+ * @version     0.3.0
  *
  * @internal    events: OnWebPagePrerender
  * @internal    parameter: 
@@ -32,10 +32,10 @@
  *              minPath - Path to a working minify installation - '/manager/min/'
  *              excludeJs - Comma separated list of files (including pathnames) not to be minified - ''
  */
-$groupJs = $modx->getOption('groupJs', $scriptProperties, true);
-$groupFolder = $modx->getOption('groupFolder', $scriptProperties, 'assets/js');
-$minPath = $modx->getOption('minPath', $scriptProperties, '/manager/min/');
-$excludeJs = $modx->getOption('excludeJs', $scriptProperties, '');
+$groupJs = $modx->getOption('minifyregistered.groupJs', null, false);
+$groupFolder = $modx->getOption('minifyregistered.groupFolder', null, 'assets/js');
+$minPath = $modx->getOption('minifyregistered.minPath', null, '/assets/min/');
+$excludeJs = $modx->getOption('minifyregistered.excludeJs', null, '');
 
 $excludeJs = ($excludeJs != '') ? explode(',', $excludeJs) : array();
 

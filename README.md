@@ -18,9 +18,9 @@ The following parameters could be set in plugin settings
 
 Property    | Description                                                                     | Default
 ----------- | ------------------------------------------------------------------------------- | ---------------
-groupJs     | Group minified files in `groupFolder` (Note 1)                                  | true
+groupJs     | Group minified files in `groupFolder` (Note 1)                                  | false
 groupFolder | Group files in this folder with `groupJs` enabled                               | `assets/js`
-minPath     | Path to a working minify installation (Note 5)                                  | `/manager/min/`
+minPath     | Path to a working minify installation                                           | `/assets/min/`
 excludeJs   | Comma separated list of files (including pathnames) not to be minified (Note 2) | -
 
 Notes
@@ -29,4 +29,3 @@ Notes
 2. Not minified files are included later than the grouped minified and minified files.
 3. Registered chunks (i.e. javascript code) are included at the last position of head/body.
 4. The order of inclusion is *external*, *grouped minified*, *minified*, *not minified* and direct code.
-5. If you i.e. block the MODX manager directory by .htaccess, you could download the latest minify on http://code.google.com/p/minify/ and install it elsewhere in your webroot

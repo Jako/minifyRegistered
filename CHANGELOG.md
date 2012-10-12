@@ -1,12 +1,16 @@
 History
 ================================================================================
 
+- 0.3.0
+    - added: minify installation in assets/min with custom index.php
+    - added: minify settings in system settings
+    - changed: moved plugin settings to system settings
 - 0.2.2
     - bugfix: conditional lines are ignored 
 - 0.2.1
     - bugfix: some registered lines were not properly worked
     - bugfix: external sources are included first 
-- 0.2 revo
+- 0.2
     - first version for MODX Revolution
 - 0.1.3 
     - bugfix: minify javascripts at the end of the body

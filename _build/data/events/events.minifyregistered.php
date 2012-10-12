@@ -15,16 +15,22 @@
  * details.
  *
  * You should have received a copy of the GNU General Public License along with
- * Rowboat; if not, write to the Free Software Foundation, Inc., 59 Temple
- * Place, Suite 330, Boston, MA 02111-1307 USA
+ * minifyRegistered; if not, write to the Free Software Foundation, Inc., 
+ * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * @package minifyregistered
- * @subpackage lexicon
- *
- * Properties English Lexicon Entries for minifyRegistered
+ * @subpackage build
+ * 
+ * Adds events to minifyRegistered plugin
  */
+$events = array();
 
-$_lang['prop_minifyregistered.groupJs'] = 'Group minified files in `groupFolder`';
-$_lang['prop_minifyregistered.groupFolder'] = 'Group files in this folder with `groupJs` enabled';
-$_lang['prop_minifyregistered.minPath'] = 'Path to a working minify installation';
-$_lang['prop_minifyregistered.excludeJs'] = 'Comma separated list of files (including pathnames) not to be minified';
+$events['OnWebPagePrerender'] = $modx->newObject('modPluginEvent');
+$events['OnWebPagePrerender']->fromArray(array(
+	'event' => 'OnWebPagePrerender',
+	'priority' => 0,
+	'propertyset' => 0,
+		), '', true, true);
+
+return $events;
+
