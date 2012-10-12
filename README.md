@@ -14,7 +14,7 @@ MODX Package Management
 
 Parameters
 --------------------------------------------------------------------------------
-The following parameters could be set in plugin settings
+The following parameters could be set in system settings
 
 Property    | Description                                                                     | Default
 ----------- | ------------------------------------------------------------------------------- | ---------------
