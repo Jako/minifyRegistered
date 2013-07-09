@@ -2,7 +2,7 @@
 /**
  * minifyRegistered
  *
- * Copyright 2011 by Thomas Jakobi <thomas.jakobi@partout.info>
+ * Copyright 2011-2013 by Thomas Jakobi <thomas.jakobi@partout.info>
  *
  * minifyRegistered is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the Free 
@@ -32,8 +32,8 @@ set_time_limit(0);
 /* define package */
 define('PKG_NAME', 'minifyRegistered');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
-define('PKG_VERSION', '0.3.0');
-define('PKG_RELEASE', 'pl');
+define('PKG_VERSION', '0.3.1');
+define('PKG_RELEASE', 'rcl');
 
 /* define sources */
 $root = dirname(dirname(__FILE__)) . '/';

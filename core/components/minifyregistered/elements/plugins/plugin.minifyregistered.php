@@ -2,7 +2,7 @@
 /**
  * minifyRegistered
  *
- * Copyright 2011 by Thomas Jakobi <thomas.jakobi@partout.info>
+ * Copyright 2011-2013 by Thomas Jakobi <thomas.jakobi@partout.info>
  *
  * minifyRegistered is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the Free 
@@ -22,8 +22,8 @@
  * @subpackage plugin
  * 
  * @author      Thomas Jakobi (thomas.jakobi@partout.info)
- * @copyright   Copyright 2011, Thomas Jakobi
- * @version     0.3.0
+ * @copyright   Copyright 2011-2013, Thomas Jakobi
+ * @version     0.3.1
  *
  * @internal    events: OnWebPagePrerender
  * @internal    parameter: 
@@ -41,6 +41,15 @@ $excludeJs = ($excludeJs != '') ? explode(',', $excludeJs) : array();
 
 $eventName = $modx->event->name;
 switch ($eventName) {
+	case 'OnLoadWebDocument': {
+			// get output
+			$output = &$modx->resource->_output;
+			// generate marker at the end of the head and body
+			$output = str_replace('</head>', '##MinifyRegisteredHead##' . "\n" . '</head>', $output);
+			$output = str_replace('</body>', '##MinifyRegisteredBody##' . "\n" . '</body>', $output);
+
+			break;
+		}
 	case 'OnWebPagePrerender' : {
 			$registeredScripts = array();
 			$startupScripts = array();
@@ -194,10 +203,10 @@ switch ($eventName) {
 
 			// insert minified scripts
 			if (isset($minifiedScripts['head'])) {
-				$output = str_replace('</head>', $minifiedScripts['head'] . '</head>', $output);
+				$output = preg_replace('!(##MinifyRegisteredHead##.*)</head>!s', $minifiedScripts['head'] . '</head>', $output);
 			}
 			if (isset($minifiedScripts['body'])) {
-				$output = str_replace('</body>', $minifiedScripts['body'] . '</body>', $output);
+				$output = preg_replace('!(##MinifyRegisteredBody##.*)</body>!s', $minifiedScripts['body'] . '</body>', $output);
 			}
 			break;
 		}
