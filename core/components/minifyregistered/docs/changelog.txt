@@ -1,8 +1,10 @@
 History
 ================================================================================
-
+- 0.3.2
+    - better external css file detection
+    - bugfix: don't use markers
 - 0.3.1
-    - bugfix: using markers instead of removing registered scripts directly
+    - using markers instead of removing registered scripts directly
 - 0.3.0
     - added: minify installation in assets/min with custom index.php
     - added: minify settings in system settings

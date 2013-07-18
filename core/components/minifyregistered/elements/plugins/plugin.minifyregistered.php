@@ -4,29 +4,29 @@
  *
  * Copyright 2011-2013 by Thomas Jakobi <thomas.jakobi@partout.info>
  *
- * minifyRegistered is free software; you can redistribute it and/or modify it 
- * under the terms of the GNU General Public License as published by the Free 
- * Software Foundation; either version 2 of the License, or (at your option) any 
+ * minifyRegistered is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 2 of the License, or (at your option) any
  * later version.
  *
- * minifyRegistered is distributed in the hope that it will be useful, but 
+ * minifyRegistered is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  *
  * You should have received a copy of the GNU General Public License along with
- * minifyRegistered; if not, write to the Free Software Foundation, Inc., 
+ * minifyRegistered; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * @package minifyregistered
  * @subpackage plugin
- * 
+ *
  * @author      Thomas Jakobi (thomas.jakobi@partout.info)
  * @copyright   Copyright 2011-2013, Thomas Jakobi
- * @version     0.3.1
+ * @version     0.3.2
  *
  * @internal    events: OnWebPagePrerender
- * @internal    parameter: 
+ * @internal    parameter:
  *              groupJs - Group minified files in `groupFolder` - true
  *              groupFolder - Group files in this folder with `groupJs` enabled - 'assets/js'
  *              minPath - Path to a working minify installation - '/manager/min/'
@@ -41,15 +41,6 @@ $excludeJs = ($excludeJs != '') ? explode(',', $excludeJs) : array();
 
 $eventName = $modx->event->name;
 switch ($eventName) {
-	case 'OnLoadWebDocument': {
-			// get output
-			$output = &$modx->resource->_output;
-			// generate marker at the end of the head and body
-			$output = str_replace('</head>', '##MinifyRegisteredHead##' . "\n" . '</head>', $output);
-			$output = str_replace('</body>', '##MinifyRegisteredBody##' . "\n" . '</body>', $output);
-
-			break;
-		}
 	case 'OnWebPagePrerender' : {
 			$registeredScripts = array();
 			$startupScripts = array();
@@ -105,9 +96,14 @@ switch ($eventName) {
 									// minify scripts
 									$registeredScripts['head_jsmin'][] = $src[2];
 								}
-							} elseif (substr(trim($src[2]), -4) == '.css') {
-								// minify css
-								$registeredScripts['head_cssmin'][] = $src[2];
+							} elseif ((substr(trim($src[2]), -4) == '.css') || (strpos($src[2], '/css?') !== FALSE)) {
+								if (substr($src[2], 0, 4) == 'http' || substr($src[2], 0, 2) == '//') {
+									// do not minify css with an external url
+									$registeredScripts['head_cssexternal'][] = $src[2];
+								} else {
+									// minify css
+									$registeredScripts['head_cssmin'][] = $src[2];
+								}
 							} else {
 								// do not minify any other file
 								$registeredScripts['head_nomin'][] = $src[2];
@@ -163,6 +159,9 @@ switch ($eventName) {
 				}
 
 				// prepare the output of the registered blocks
+				if (count($registeredScripts['head_cssexternal'])) {
+					$minifiedScripts['head'] .= '<link href="' . implode('" rel="stylesheet" type="text/css" />' . "\r\n" . '<link href="', $registeredScripts['head_cssexternal']) . '" rel="stylesheet" type="text/css" />' . "\r\n";
+				}
 				if (count($registeredScripts['head_cssmin'])) {
 					$minifiedScripts['head'] .= '<link href="' . $minPath . '?f=' . implode(',', $registeredScripts['head_cssmin']) . '" rel="stylesheet" type="text/css" />' . "\r\n";
 				}
@@ -203,10 +202,10 @@ switch ($eventName) {
 
 			// insert minified scripts
 			if (isset($minifiedScripts['head'])) {
-				$output = preg_replace('!(##MinifyRegisteredHead##.*)</head>!s', $minifiedScripts['head'] . '</head>', $output);
+				$output = str_replace('</head>', $minifiedScripts['head'] . '</head>', $output);
 			}
 			if (isset($minifiedScripts['body'])) {
-				$output = preg_replace('!(##MinifyRegisteredBody##.*)</body>!s', $minifiedScripts['body'] . '</body>', $output);
+				$output = str_replace('</body>', $minifiedScripts['body'] . '</body>', $output);
 			}
 			break;
 		}

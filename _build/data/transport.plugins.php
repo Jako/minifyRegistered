@@ -36,7 +36,7 @@ $plugins[0]->set('category', 0);
 $events = include $sources['events'].'events.minifyregistered.php';
 if (is_array($events) && !empty($events)) {
     $plugins[0]->addMany($events);
-    $modx->log(xPDO::LOG_LEVEL_INFO,'Packaged in '.count($events).' Plugin Events for minifyRegistered.'); flush();
+    $modx->log(xPDO::LOG_LEVEL_INFO,'Packaged in '.count($events).' Plugin Events for minifyRegistered.');
 } else {
     $modx->log(xPDO::LOG_LEVEL_ERROR,'Could not find plugin events for minifyRegistered!');
 }
