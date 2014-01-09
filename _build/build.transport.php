@@ -53,7 +53,10 @@ $sources = array(
 	'lexicon' => $root . 'core/components/' . PKG_NAME_LOWER . '/lexicon/',
 	'docs' => $root . 'core/components/' . PKG_NAME_LOWER . '/docs/',
 	'pages' => $root . 'core/components/' . PKG_NAME_LOWER . '/elements/pages/',
-	'templates' => $root . 'core/components/' . PKG_NAME_LOWER . '/templates/',
+	'templates' => $root . 'core/components/' . PKG_NAME_LOWER . '/elements/templates/',
+	'validators' => $root . '_build/validators/',
+	'subpackages' => $root . '_build/subpackages/',
+	'model' => $root . 'core/components/' . PKG_NAME_LOWER . '/model/',
 	'source_assets' => $root . 'assets/components/' . PKG_NAME_LOWER,
 	'source_core' => $root . 'core/components/' . PKG_NAME_LOWER,
 	'source_min' => $root . 'assets/min',
@@ -61,9 +64,9 @@ $sources = array(
 unset($root);
 
 /* override with your own defines here (see build.config.sample.php) */
-require_once $sources['build'] . '/build.config.php';
+require_once $sources['build'] . 'build.config.php';
 require_once MODX_CORE_PATH . 'model/modx/modx.class.php';
-require_once $sources['build'] . '/includes/functions.php';
+require_once $sources['build'] . 'includes/functions.php';
 
 $modx = new modX();
 $modx->initialize('mgr');
@@ -76,12 +79,24 @@ $modx->loadClass('transport.modPackageBuilder', '', false, true);
 $builder = new modPackageBuilder($modx);
 $builder->createPackage(PKG_NAME_LOWER, PKG_VERSION, PKG_RELEASE);
 $builder->registerNamespace(PKG_NAME_LOWER, false, true, '{core_path}components/' . PKG_NAME_LOWER . '/');
+$modx->log(modX::LOG_LEVEL_INFO, 'Created Transport Package and Namespace.');
 
 /* create category */
 $category = $modx->newObject('modCategory');
 $category->set('id', 1);
 $category->set('category', PKG_NAME);
 $modx->log(modX::LOG_LEVEL_INFO, 'Packaged in category.');
+
+/* add chunks */
+$chunks = include $sources['data'] . 'transport.chunks.php';
+if (is_array($chunks)) {
+	$category->addMany($chunks, 'Chunks');
+} else {
+	$chunks = array();
+	$modx->log(modX::LOG_LEVEL_ERROR, 'No chunks defined.');
+}
+$modx->log(modX::LOG_LEVEL_INFO, 'Packaged in ' . count($chunks) . ' chunks.');
+unset($chunks);
 
 /* add snippets */
 $snippets = include $sources['data'] . 'transport.snippets.php';
@@ -104,6 +119,25 @@ if (is_array($plugins)) {
 }
 $modx->log(modX::LOG_LEVEL_INFO, 'Packaged in ' . count($plugins) . ' plugins.');
 unset($plugins);
+
+/* add system settings */
+$settings = include $sources['data'] . 'transport.settings.php';
+if (is_array($settings)) {
+	$attr = array(
+		xPDOTransport::UNIQUE_KEY => 'key',
+		xPDOTransport::PRESERVE_KEYS => true,
+		xPDOTransport::UPDATE_OBJECT => false,
+	);
+	foreach ($settings as $setting) {
+		$vehicle = $builder->createVehicle($setting, $attr);
+		$builder->putVehicle($vehicle);
+	}
+	unset($setting, $attr);
+} else {
+	$modx->log(modX::LOG_LEVEL_ERROR, 'No settings defined.');
+}
+$modx->log(modX::LOG_LEVEL_INFO, 'Packaged in ' . count($settings) . ' System Settings.');
+unset($settings);
 
 /* create category vehicle */
 $attr = array(
@@ -129,6 +163,11 @@ $attr = array(
 					xPDOTransport::UNIQUE_KEY => array('pluginid', 'event'),
 				)
 			)
+		),
+		'Chunks' => array(
+			xPDOTransport::PRESERVE_KEYS => false,
+			xPDOTransport::UPDATE_OBJECT => true,
+			xPDOTransport::UNIQUE_KEY => 'name',
 		)
 	)
 );
@@ -136,6 +175,10 @@ $vehicle = $builder->createVehicle($category, $attr);
 unset($category, $attr);
 
 $modx->log(modX::LOG_LEVEL_INFO, 'Adding file resolvers ...');
+//$vehicle->resolve('file', array(
+//    'source' => $sources['source_assets'],
+//    'target' => "return MODX_ASSETS_PATH . 'components/';",
+//));
 $vehicle->resolve('file', array(
 	'source' => $sources['source_core'],
 	'target' => "return MODX_CORE_PATH . 'components/';"
@@ -146,24 +189,6 @@ $vehicle->resolve('file', array(
 ));
 $modx->log(modX::LOG_LEVEL_INFO, 'Packaged in folders.');
 $builder->putVehicle($vehicle);
-
-/* load system settings */
-$settings = include $sources['data'] . 'transport.settings.php';
-if (!is_array($settings)) {
-	$modx->log(modX::LOG_LEVEL_ERROR, 'No settings defined.');
-} else {
-	$attr = array(
-		xPDOTransport::UNIQUE_KEY => 'key',
-		xPDOTransport::PRESERVE_KEYS => true,
-		xPDOTransport::UPDATE_OBJECT => false,
-	);
-	foreach ($settings as $setting) {
-		$vehicle = $builder->createVehicle($setting, $attr);
-		$builder->putVehicle($vehicle);
-	}
-	$modx->log(modX::LOG_LEVEL_INFO, 'Packaged in ' . count($settings) . ' System Settings.');
-}
-unset($settings, $setting, $attr);
 
 /* now pack in the license file, readme and changelog */
 $modx->log(modX::LOG_LEVEL_INFO, 'Added package attributes and setup options.');
