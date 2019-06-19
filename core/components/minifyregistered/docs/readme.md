@@ -1,22 +1,23 @@
-minifyRegistered
-================================================================================
+# minifyRegistered
 
 Collect the registered javascript and css files/chunks and minify them
-for the MODX Revolution content management framework
 
-Features
---------------------------------------------------------------------------------
+- Author: Thomas Jakobi <thomas.jakobi@partout.info>
+- License: GNU GPLv2
+
+## Features
+
 minifyRegistered is a simple but effective tool for MODX Revolution. With this 
 tool all js and css files (and chunks) added by the MODX API functions 
 regClientStartupScript, regClientScript, regClientCSS, regClientStartupHTMLBlock
 and regClientHTMLBlock are checked to minify them by minify
 
-Installation
---------------------------------------------------------------------------------
+## Installation
+
 MODX Package Management
 
-Parameters
---------------------------------------------------------------------------------
+## Parameters
+
 The following parameters could be set in system settings
 
 groupJs     - Group minified files in `groupFolder` (Note 1) (default false)
@@ -27,8 +28,8 @@ minPath     - Path to a working minify installation
 excludeJs   - Comma separated list of files (including pathnames) not to be 
               minified (Note 2)
 
-Notes
---------------------------------------------------------------------------------
+### Notes
+
 1. Grouping registered javascripts could change the inclusion order of the 
    registered javascripts.
 2. Not minified files are included later than the grouped minified and minified 

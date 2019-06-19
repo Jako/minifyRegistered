@@ -1,0 +1,130 @@
+{
+  "name": "minifyRegistered",
+  "lowCaseName": "minifyregistered",
+  "description": "Collect the registered javascript and css files/chunks and minify them.",
+  "author": "Thomas Jakobi",
+  "version": "0.3.2",
+  "package": {
+    "elements": {
+      "plugins": [
+        {
+          "name": "minifyRegistered",
+          "file": "minifyregistered.plugin.php",
+          "events": [
+            "OnWebPagePrerender"
+          ]
+        }
+      ]
+    },
+    "systemSettings": [
+      {
+        "key": "excludeJs",
+        "area": "system",
+        "value": ""
+      },
+      {
+        "key": "groupFolder",
+        "area": "system",
+        "value": "assets/js"
+      },
+      {
+        "key": "groupJs",
+        "type": "combo-boolean",
+        "area": "system",
+        "value": "0"
+      },
+      {
+        "key": "minPath",
+        "area": "system",
+        "value": "/assets/min/"
+      },
+      {
+        "key": "errorLogger",
+        "type": "combo-boolean",
+        "area": "minify",
+        "value": "0"
+      },
+      {
+        "key": "allowDebugFlag",
+        "type": "combo-boolean",
+        "area": "minify",
+        "value": "0"
+      },
+      {
+        "key": "documentRoot",
+        "area": "minify",
+        "value": ""
+      },
+      {
+        "key": "cacheFileLocking",
+        "type": "combo-boolean",
+        "area": "minify",
+        "value": "1"
+      },
+      {
+        "key": "bubbleCssImports",
+        "type": "combo-boolean",
+        "area": "minify",
+        "value": "0"
+      },
+      {
+        "key": "maxAge",
+        "area": "minify",
+        "value": "1800"
+      },
+      {
+        "key": "closureCompiler",
+        "type": "combo-boolean",
+        "area": "minify",
+        "value": "0"
+      },
+      {
+        "key": "allowDirs",
+        "area": "minify",
+        "value": "[]"
+      },
+      {
+        "key": "groupsOnly",
+        "type": "combo-boolean",
+        "area": "minify",
+        "value": "0"
+      },
+      {
+        "key": "noMinPattern",
+        "area": "minify",
+        "value": ""
+      },
+      {
+        "key": "symlinks",
+        "area": "minify",
+        "value": "[]"
+      },
+      {
+        "key": "uploaderHoursBehind",
+        "area": "minify",
+        "value": "0"
+      },
+      {
+        "key": "libPath",
+        "area": "minify",
+        "value": ""
+      }
+    ]
+  },
+  "build": {
+    "readme": "docs/readme.md",
+    "license": "docs/license.md",
+    "changelog": "docs/changelog.md",
+    "options": {
+      "modx_version": "2.6"
+    },
+    "setupOptions": {
+      "source": "setup.options.php"
+    },
+    "resolver": {
+      "after": [
+        "resolve.treehillstudio.php"
+      ]
+    }
+  }
+}
