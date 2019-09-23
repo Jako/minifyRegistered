@@ -2,7 +2,7 @@
 /**
  * Setup options
  *
- * @package ajaxupload
+ * @package minifyregistered
  * @subpackage build
  */
 
@@ -15,9 +15,9 @@ $output = '<style type="text/css">
 $values = array();
 switch ($options[xPDOTransport::PACKAGE_ACTION]) {
     case xPDOTransport::ACTION_INSTALL:
-        $output .= '<h2>Install AjaxUpload</h2>
+        $output .= '<h2>Install minifyRegistered</h2>
 
-        <p>Thanks for installing AjaxUpload. This open source extra was
+        <p>Thanks for installing minifyRegistered. This open source extra was
         developped by Treehill Studio - MODX development in Münsterland.</p>
 
         <p>During the installation, we will collect some statistical data (the
@@ -31,9 +31,9 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
 
         break;
     case xPDOTransport::ACTION_UPGRADE:
-        $output .= '<h2>Upgrade AjaxUpload</h2>
+        $output .= '<h2>Upgrade minifyRegistered</h2>
 
-        <p>AjaxUpload will be upgraded. This open source extra was developped by
+        <p>minifyRegistered will be upgraded. This open source extra was developped by
         Treehill Studio - MODX development in Münsterland.</p>
 
         During the upgrade, we will collect some statistical data (the hostname,

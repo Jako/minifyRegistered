@@ -3,7 +3,7 @@
   "lowCaseName": "minifyregistered",
   "description": "Collect the registered javascript and css files/chunks and minify them.",
   "author": "Thomas Jakobi",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "package": {
     "elements": {
       "plugins": [
@@ -111,13 +111,20 @@
       }
     ]
   },
+  "dependencies": [
+    {
+      "name": "php",
+      "version": ">=5.6"
+    },
+    {
+      "name": "modx",
+      "version": ">=2.6"
+    }
+  ],
   "build": {
     "readme": "docs/readme.md",
     "license": "docs/license.md",
     "changelog": "docs/changelog.md",
-    "options": {
-      "modx_version": "2.6"
-    },
     "setupOptions": {
       "source": "setup.options.php"
     },

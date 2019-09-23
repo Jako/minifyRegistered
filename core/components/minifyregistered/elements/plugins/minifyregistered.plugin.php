@@ -2,36 +2,12 @@
 /**
  * minifyRegistered
  *
- * Copyright 2011-2013 by Thomas Jakobi <thomas.jakobi@partout.info>
- *
- * minifyRegistered is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the Free
- * Software Foundation; either version 2 of the License, or (at your option) any
- * later version.
- *
- * minifyRegistered is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * minifyRegistered; if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * Copyright 2011-2019 by Thomas Jakobi <thomas.jakobi@partout.info>
  *
  * @package minifyregistered
  * @subpackage plugin
- *
- * @author      Thomas Jakobi (thomas.jakobi@partout.info)
- * @copyright   Copyright 2011-2013, Thomas Jakobi
- * @version     0.3.2
- *
- * @internal    events: OnWebPagePrerender
- * @internal    parameter:
- *              groupJs - Group minified files in `groupFolder` - true
- *              groupFolder - Group files in this folder with `groupJs` enabled - 'assets/js'
- *              minPath - Path to a working minify installation - '/manager/min/'
- *              excludeJs - Comma separated list of files (including pathnames) not to be minified - ''
  */
+
 $groupJs = $modx->getOption('minifyregistered.groupJs', null, false);
 $groupFolder = $modx->getOption('minifyregistered.groupFolder', null, 'assets/js');
 $minPath = $modx->getOption('minifyregistered.minPath', null, '/assets/min/');
@@ -159,40 +135,40 @@ switch ($eventName) {
 				}
 
 				// prepare the output of the registered blocks
-				if (count($registeredScripts['head_cssexternal'])) {
+				if (isset($registeredScripts['head_cssexternal']) && count($registeredScripts['head_cssexternal'])) {
 					$minifiedScripts['head'] .= '<link href="' . implode('" rel="stylesheet" type="text/css" />' . "\r\n" . '<link href="', $registeredScripts['head_cssexternal']) . '" rel="stylesheet" type="text/css" />' . "\r\n";
 				}
-				if (count($registeredScripts['head_cssmin'])) {
+				if (isset($registeredScripts['head_cssmin']) && count($registeredScripts['head_cssmin'])) {
 					$minifiedScripts['head'] .= '<link href="' . $minPath . '?f=' . implode(',', $registeredScripts['head_cssmin']) . '" rel="stylesheet" type="text/css" />' . "\r\n";
 				}
-				if (count($registeredScripts['head_external'])) {
+				if (isset($registeredScripts['head_external']) && count($registeredScripts['head_external'])) {
 					$minifiedScripts['head'] .= '<script src="' . implode('" type="text/javascript"></script>' . "\r\n" . '<script src="', $registeredScripts['head_external']) . '" type="text/javascript"></script>' . "\r\n";
 				}
-				if (count($registeredScripts['head_jsmingroup'])) {
+				if (isset($registeredScripts['head_jsmingroup']) && count($registeredScripts['head_jsmingroup'])) {
 					$minifiedScripts['head'] .= '<script src="' . $minPath . '?b=' . $groupFolder . '&amp;f=' . implode(',', $registeredScripts['head_jsmingroup']) . '" type="text/javascript"></script>' . "\r\n";
 				}
-				if (count($registeredScripts['head_jsmin'])) {
+				if (isset($registeredScripts['head_jsmin']) && count($registeredScripts['head_jsmin'])) {
 					$minifiedScripts['head'] .= '<script src="' . $minPath . '?f=' . implode(',', $registeredScripts['head_jsmin']) . '" type="text/javascript"></script>' . "\r\n";
 				}
-				if (count($registeredScripts['head_nomin'])) {
+				if (isset($registeredScripts['head_nomin']) && count($registeredScripts['head_nomin'])) {
 					$minifiedScripts['head'] .= '<script src="' . implode('" type="text/javascript"></script>' . "\r\n" . '<script src="', $registeredScripts['head_nomin']) . '" type="text/javascript"></script>' . "\r\n";
 				}
-				if (count($registeredScripts['head'])) {
+				if (isset($registeredScripts['head']) && count($registeredScripts['head'])) {
 					$minifiedScripts['head'] .= implode("\r\n", $registeredScripts['head']) . "\r\n";
 				}
-				if (count($registeredScripts['body_external'])) {
+				if (isset($registeredScripts['body_external']) && count($registeredScripts['body_external'])) {
 					$minifiedScripts['body'] .= '<script src="' . implode('" type="text/javascript"></script>' . "\r\n" . '<script src="', $registeredScripts['body_external']) . '" type="text/javascript"></script>' . "\r\n";
 				}
-				if (count($registeredScripts['body_jsmingroup'])) {
+				if (isset($registeredScripts['body_jsmingroup']) && count($registeredScripts['body_jsmingroup'])) {
 					$minifiedScripts['body'] .= '<script src="' . $minPath . '?b=' . $groupFolder . '&amp;f=' . implode(',', $registeredScripts['body_jsmingroup']) . '" type="text/javascript"></script>' . "\r\n";
 				}
-				if (count($registeredScripts['body_jsmin'])) {
+				if (isset($registeredScripts['body_jsmin']) && count($registeredScripts['body_jsmin'])) {
 					$minifiedScripts['body'] .= '<script src="' . $minPath . '?f=' . implode(',', $registeredScripts['body_jsmin']) . '" type="text/javascript"></script>' . "\r\n";
 				}
-				if (count($registeredScripts['body_nomin'])) {
+				if (isset($registeredScripts['body_nomin']) && count($registeredScripts['body_nomin'])) {
 					$minifiedScripts['body'] .= '<script src="' . implode('" type="text/javascript"></script>' . "\r\n" . '<script src="', $registeredScripts['body_nomin']) . '" type="text/javascript"></script>' . "\r\n";
 				}
-				if (count($registeredScripts['body'])) {
+				if (isset($registeredScripts['body']) && count($registeredScripts['body'])) {
 					$minifiedScripts['body'] .= "\r\n" . implode("\r\n", $registeredScripts['body']);
 				}
 
@@ -210,4 +186,3 @@ switch ($eventName) {
 			break;
 		}
 }
-?>
