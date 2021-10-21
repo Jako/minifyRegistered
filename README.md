@@ -1,29 +1,23 @@
 # minifyRegistered
 
-Collect the registered javascript and css files/chunks and minify them
-
-## Features
-
-minifyRegistered is a simple but effective tool for MODX Revolution. With this tool all js and css files (and chunks) added by the MODX API functions `regClientStartupScript`, `regClientScript`, `regClientCSS`, `regClientStartupHTMLBlock` and `regClientHTMLBlock` are checked to minify them by minify
+minifyRegistered is a simple but effective tool for MODX Revolution. With this
+tool all js and css files (and chunks) added by the MODX API functions
+`regClientStartupScript`, `regClientScript`, `regClientCSS`,
+`regClientStartupHTMLBlock` and `regClientHTMLBlock` are checked to minify them
+by minify
 
 ## Installation
 
 MODX Package Management
 
-## Parameters
+## Usage
 
-The following parameters could be set in system settings
+Install via package manager and the registered scripts and style files are minified by minify.
 
-Property    | Description                                                                     | Default
------------ | ------------------------------------------------------------------------------- | ---------------
-groupJs     | Group minified files in `groupFolder` (Note 1)                                  | false
-groupFolder | Group files in this folder with `groupJs` enabled                               | `assets/js`
-minPath     | Path to a working minify installation                                           | `/assets/min/`
-excludeJs   | Comma separated list of files (including pathnames) not to be minified (Note 2) | -
+## Documentation
 
-### Notes
+For more information please read the [documentation](https://jako.github.io/minifyRegistered/).
 
-1. Grouping registered javascripts could change the inclusion order of the registered javascripts.
-2. Not minified files are included later than the grouped minified and minified files.
-3. Registered chunks (i.e. javascript code) are included at the last position of head/body.
-4. The order of inclusion is *external*, *grouped minified*, *minified*, *not minified* and direct code.
+## License
+
+The project is licensed under the [GPLv2 license](https://github.com/Jako/minifyRegistered/blob/master/core/components/minifyregistered/docs/license.md).

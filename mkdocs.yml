@@ -1,0 +1,49 @@
+site_name: minifyRegistered
+docs_dir: docs
+site_dir: _build/site
+edit_uri: tree/master/docs
+
+repo_name: 'Jako/minifyRegistered'
+repo_url: https://github.com/Jako/minifyRegistered
+
+copyright: '&copy; 2016 <a href="https://treehillstudio.com">Treehill Studio</a>'
+
+nav:
+- Description: 'index.md'
+- Installation: 'installation.md'
+- Usage: 'usage.md'
+- Contributors: 'contributors.md'
+
+extra:
+  analytics:
+    provider: matomo
+    url: matomo.treehillstudio.com
+    site: 40
+
+theme:
+  name: material
+  custom_dir: ../../mkdocs-material/material
+
+  # 404 page
+  static_templates:
+    - 404.html
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  # Default values, taken from mkdocs_theme.yml
+  language: en
+  feature:
+    tabs: false
+  font:
+    text: Sora
+    code: JetBrains Mono
+
+markdown_extensions:
+  - footnotes
+  - tables
+  - admonition
+  - meta
+  - toc
+  - pymdownx.superfences
