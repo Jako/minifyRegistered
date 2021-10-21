@@ -12,7 +12,8 @@ MODX Package Management
 
 ## Usage
 
-Install via package manager and the registered scripts and style files are minified by minify.
+Install via package manager and the registered scripts and style files are
+minified by minify.
 
 ## Documentation
 

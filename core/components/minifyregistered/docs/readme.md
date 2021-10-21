@@ -18,7 +18,8 @@ MODX Package Management
 
 ## Usage
 
-Install via package manager and the registered scripts and style files are minified by minify.
+Install via package manager and fill the MODX system setting `ressavesort.sorts`
+with a JSON encoded array of sort configurations.
 
 ## Documentation
 
