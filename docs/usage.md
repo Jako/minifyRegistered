@@ -5,7 +5,7 @@ by minify.
 
 ## System Settings
 
-The following MODX system settings are available:
+MinifyRegistered uses the following system settings in the namespace `minifyregistered`:
 
 Key | Description | Default
 ----|-------------|--------
