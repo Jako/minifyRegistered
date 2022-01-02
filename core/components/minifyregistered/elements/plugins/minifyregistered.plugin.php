@@ -2,7 +2,7 @@
 /**
  * minifyRegistered
  *
- * Copyright 2011-2021 by Thomas Jakobi <thomas.jakobi@partout.info>
+ * Copyright 2011-2021 by Thomas Jakobi <office@treehillstudio.com>
  *
  * @package minifyregistered
  * @subpackage plugin

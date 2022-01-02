@@ -2,7 +2,7 @@
 
 Collect the registered javascript and css files/chunks and minify them
 
-- Author: Thomas Jakobi <thomas.jakobi@partout.info>
+- Author: Thomas Jakobi <office@treehillstudio.com>
 - License: GNU GPLv2
 
 ## Features
