@@ -9,6 +9,7 @@
       "plugins": [
         {
           "name": "minifyRegistered",
+          "description": "Collect the registered javascript and css files/chunks and minify them",
           "file": "minifyregistered.plugin.php",
           "events": [
             "OnWebPagePrerender"
