@@ -3,7 +3,7 @@
   "lowCaseName": "minifyregistered",
   "description": "Collect the registered javascript and css files/chunks and minify them.",
   "author": "Thomas Jakobi",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "package": {
     "elements": {
       "plugins": [
@@ -115,7 +115,7 @@
   "dependencies": [
     {
       "name": "php",
-      "version": ">=5.6"
+      "version": ">=7.2"
     },
     {
       "name": "modx",
@@ -131,6 +131,7 @@
     },
     "resolver": {
       "after": [
+        "resolve.cleanup.php",
         "resolve.treehillstudio.php"
       ]
     }

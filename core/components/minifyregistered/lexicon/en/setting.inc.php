@@ -1,31 +1,11 @@
 <?php
 /**
- * minifyRegistered
- *
- * Copyright 2011-2013 by Thomas Jakobi <office@treehillstudio.com>
- *
- * minifyRegistered is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the Free
- * Software Foundation; either version 2 of the License, or (at your option) any
- * later version.
- *
- * minifyRegistered is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * minifyRegistered; if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * Setting Lexicon Entries for minifyRegistered
  *
  * @package minifyregistered
  * @subpackage lexicon
- *
- * Default English Lexicon Entries for minifyRegistered
  */
-
 $_lang['area_minify'] = 'Minify';
-
 $_lang['setting_minifyregistered.allowDebugFlag'] = 'Allow debug mode output';
 $_lang['setting_minifyregistered.allowDebugFlag_desc'] = 'Once true, you can send the cookie minDebug to request debug mode output. The cookie value should match the URIs you\'d like to debug. E.g. to debug /min/f=file1.js send the cookie minDebug=file1.js You can manually enable debugging by appending \'&debug\' to a URI. E.g. /min/?f=script1.js,script2.js&debug<br><br>In \'debug\' mode, Minify combines files with no minification and adds comments to indicate line #s of the original files.';
 $_lang['setting_minifyregistered.allowDirs'] = 'Allowed directories for minify';

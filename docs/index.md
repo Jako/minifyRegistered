@@ -6,7 +6,7 @@ the registered javascript and css files/chunks and minifies them.
 ### Requirements
 
 * MODX Revolution 2.6+
-* PHP v5.6+
+* PHP 7.2+
 
 ### Features
 

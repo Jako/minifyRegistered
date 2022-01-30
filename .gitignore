@@ -10,4 +10,5 @@ _packages/*.*
 !_packages/*.zip
 
 node_modules/
-assets/min/*
+core/components/*/vendor/
+test
