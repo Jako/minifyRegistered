@@ -2,7 +2,7 @@
 /**
  * Resolve cleanup
  *
- * @package ajaxupload
+ * @package minifyregistered
  * @subpackage build
  *
  * @var array $options
