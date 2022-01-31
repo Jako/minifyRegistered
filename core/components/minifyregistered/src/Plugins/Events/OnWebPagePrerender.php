@@ -67,7 +67,7 @@ class OnWebPagePrerender extends Plugin
             $minifiedScripts['body'] = array_filter($minifiedScripts['body']);
 
             // Cache the result
-            $this->modx->cacheManager->set('mfr_' . md5(json_encode($startupScripts) . json_encode($scripts)), $minifiedScripts);
+            $this->modx->cacheManager->set('mfr_' . md5($clientStartupScripts . $clientScripts), $minifiedScripts);
         }
 
         // Insert minified scripts
