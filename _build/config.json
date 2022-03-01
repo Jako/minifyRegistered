@@ -126,11 +126,15 @@
     "readme": "docs/readme.md",
     "license": "docs/license.md",
     "changelog": "docs/changelog.md",
+    "options": {
+      "composer": true
+    },
     "setupOptions": {
       "source": "setup.options.php"
     },
     "resolver": {
       "after": [
+        "resolve.composer.php",
         "resolve.cleanup.php",
         "resolve.treehillstudio.php"
       ]
