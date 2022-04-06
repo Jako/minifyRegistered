@@ -41,7 +41,7 @@ class OnWebPagePrerender extends Plugin
             $startupScripts = ($clientStartupScripts) ? explode("\n", $clientStartupScripts) : [];
             $scripts = ($clientScripts) ? explode("\n", $clientScripts) : [];
 
-            // Collect the registered scripts a
+            // Collect the registered scripts
             $this->collectRegisted($startupScripts, 'head');
             $this->collectRegisted($scripts, 'body');
 
