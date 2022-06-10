@@ -120,6 +120,10 @@
     {
       "name": "modx",
       "version": ">=2.6"
+    },
+    {
+      "name": "modx",
+      "version": "<3.0"
     }
   ],
   "build": {

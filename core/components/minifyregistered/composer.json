@@ -16,7 +16,7 @@
   },
   "require": {
     "php": ">=7.2.5",
-    "mrclay/minify": "~3.0.0"
+    "mrclay/minify": "^3.0"
   },
   "autoload": {
     "psr-4": {
