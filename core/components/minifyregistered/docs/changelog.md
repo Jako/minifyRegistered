@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Install the Composer dependencies directly on the server
+- Install the composer dependencies directly on the server
 
 ### Fixed
 
