@@ -12,7 +12,7 @@ Key | Description | Default
 groupJs  | Group minified files in `groupFolder` [^1]  | No
 groupFolder | Group files in this folder with `groupJs` enabled | `assets/js`
 minPath | Path to a working minify installation | `/assets/min/`
-excludeJs | Comma separated list of files (including pathnames) not to be minified [^2] | -
+excludeJs | Comma-separated list of files (including pathnames) not to be minified [^2] | -
 
 [^1]: Grouping registered javascripts could change the inclusion order of the registered javascripts.
 [^2]: Not minified files are included later than the grouped minified and minified files.
