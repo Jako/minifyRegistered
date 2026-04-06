@@ -1,5 +1,4 @@
 const gulp = require('gulp'),
-    rename = require('gulp-rename'),
     replace = require('gulp-replace'),
     pkg = require('./_build/config.json');
 
@@ -22,28 +21,28 @@ const bumpCopyright = function () {
     return gulp.src([
         'core/components/minifyregistered/model/minifyregistered/minifyregistered.class.php',
         'core/components/minifyregistered/src/MinifyRegistered.php',
-    ], {base: './'})
+    ], { base: './' })
         .pipe(replace(/Copyright 2011(-\d{4})? by/g, 'Copyright ' + (year > 2011 ? '2011-' : '') + year + ' by'))
         .pipe(gulp.dest('.'));
 };
 const bumpVersion = function () {
     return gulp.src([
         'core/components/minifyregistered/src/MinifyRegistered.php',
-    ], {base: './'})
+    ], { base: './' })
         .pipe(replace(/version = '\d+\.\d+\.\d+-?[0-9a-z]*'/ig, 'version = \'' + pkg.version + '\''))
         .pipe(gulp.dest('.'));
 };
 const bumpDocs = function () {
     return gulp.src([
-        'mkdocs.yml',
-    ], {base: './'})
+        'zensical.toml',
+    ], { base: './' })
         .pipe(replace(/&copy; 2011(-\d{4})?/g, '&copy; ' + (year > 2011 ? '2011-' : '') + year))
         .pipe(gulp.dest('.'));
 };
 const bumpRequirements = function () {
     return gulp.src([
         'docs/index.md',
-    ], {base: './'})
+    ], { base: './' })
         .pipe(replace(/[*-] MODX Revolution \d.\d.*/g, '* MODX Revolution ' + modxversion + '+'))
         .pipe(replace(/[*-] PHP (v)?\d.\d.*/g, '* PHP ' + phpversion + '+'))
         .pipe(gulp.dest('.'));
