@@ -1,6 +1,7 @@
 {
   "name": "treehillstudio/minifyregistered",
   "description": "Collect the registered javascript and css files/chunks and minify them.",
+  "version": "0.4.1",
   "authors": [
     {
       "name": "Thomas Jakobi",

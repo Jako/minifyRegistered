@@ -1,16 +1,19 @@
 {
+  "fullname": "minifyRegistered",
   "name": "minifyregistered",
   "description": "Collect the registered javascript and css files/chunks and minify them.",
   "author": "Thomas Jakobi <office@treehillstudio.com>",
   "private": true,
-  "devDependencies": {
-    "gulp": "^5.0.1",
-    "gulp-replace": "^1.1.4"
+  "version": "0.4.1",
+  "phpversion": "7.2",
+  "modxversion": "2.6",
+  "startYear": "2011",
+  "scripts": {
+    "build": "node build.js",
+    "build:bump": "node build.js bump"
   },
   "browserslist": [
-    "last 2 version",
     "> 1%",
-    "maintained node versions",
-    "not dead"
+    "defaults"
   ]
 }
