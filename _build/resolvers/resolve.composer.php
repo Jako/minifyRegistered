@@ -45,6 +45,16 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
             require "phar://{$path}composer.phar/vendor/autoload.php";
         }
 
+        // Since PHP 8 the @ operator doesn't set error_reporting() to 0 anymore, so the MODX 2 error handler logs
+        // the suppressed warnings of Composer, i.e. the open_basedir warnings during the search for a CA bundle.
+        // These are skipped here, all other errors are passed to the MODX error handler.
+        $previousErrorHandler = set_error_handler(function ($errno, $errstr, $errfile = null, $errline = null) use (&$previousErrorHandler) {
+            if (!(error_reporting() & $errno)) {
+                return true;
+            }
+            return $previousErrorHandler ? call_user_func($previousErrorHandler, $errno, $errstr, $errfile, $errline) : false;
+        });
+
         // Run Composer without proc_open/exec
         $io = new BufferIO('', StreamOutput::VERBOSITY_NORMAL, new HtmlOutputFormatter());
         $composer = Factory::create($io);
@@ -72,7 +82,8 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         $output = nl2br(trim($output));
         $modx->log(xPDO::LOG_LEVEL_INFO, $output);
 
-        // Restore the previous working directory for the following resolvers
+        // Restore the previous error handler and working directory for the following resolvers
+        restore_error_handler();
         chdir($cwd);
         break;
     case xPDOTransport::ACTION_UNINSTALL:
